@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLASSIFIED INFORMATION</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff4f81, #003366);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20%;
+            animation: backgroundAnimation 5s infinite alternate;
+        }
+        h1 {
+            font-size: 48px;
+            color: #fff;
+            animation: textAnimation 3s infinite alternate;
+        }
+        .hint {
+            font-size: 18px;
+            font-style: italic;
+            color: #ffcccc;
+        }
+        .login-box {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            border-radius: 10px;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #ff66b2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff3385;
+        }
+        .error-message {
+            color: red;
+            font-size: 20px;
+            display: none;
+        }
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(45deg, #ff4f81, #003366); }
+            100% { background: linear-gradient(45deg, #003366, #ff4f81); }
+        }
+        @keyframes textAnimation {
+            0% { color: #ffffff; }
+            100% { color: #ffcccc; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>CLASSIFIED INFORMATION</h1>
+<p>Enter the details below to access the secret information.</p>
+
+<div class="login-box">
+    <form id="loginForm">
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" placeholder="Our callsign" required>
+        <br>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" placeholder="The day we are official" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <div class="error-message" id="errorMessage">Try again! 😞</div>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        
+        if (username === 'babi' && password === '11072022') {
+            window.location.href = "secondPage.html";
+        } else {
+            document.getElementById('errorMessage').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('errorMessage').style.display = 'none';
+            }, 2000);
+        }
+    });
+</script>
+
+</body>
+</html>

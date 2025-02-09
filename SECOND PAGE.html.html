@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            background-color: #ff66b2;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20%;
+        }
+        button {
+            padding: 15px;
+            font-size: 20px;
+            background-color: #ff3385;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.2);
+        }
+        .loading {
+            font-size: 24px;
+            color: white;
+        }
+        .confetti {
+            display: none;
+            font-size: 50px;
+            color: gold;
+            animation: confetti 1s forwards;
+        }
+        @keyframes confetti {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .heart {
+            display: none;
+            font-size: 50px;
+            animation: heart 1s infinite;
+        }
+        @keyframes heart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="loading" id="loading">Loading... 0%</div>
+<button id="yesBtn" style="display:none;" onclick="goToThirdPage()">Yes</button>
+<button id="noBtn" onclick="moveNoButton()">No</button>
+<div id="confetti" class="confetti">🎉🎉🎉</div>
+<div id="heart" class="heart">💖</div>
+
+<script>
+    let loadingProgress = 0;
+    const loadingText = document.getElementById('loading');
+    const confetti = document.getElementById('confetti');
+    const heart = document.getElementById('heart');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+
+    let moveInterval;
+    let noCatchTime = 0;
+
+    // Simulate loading
+    const loadingInterval = setInterval(function() {
+        loadingProgress += 1;
+        loadingText.textContent = 'Loading... ' + loadingProgress + '%';
+        if (loadingProgress === 100) {
+            clearInterval(loadingInterval);
+            setTimeout(function() {
+                confetti.style.display = 'block';
+                heart.style.display = 'block';
+                setTimeout(function() {
+                    alert("HI BABI, WILL YOU BE MY VALENTINE?");
+                    yesBtn.style.display = 'inline-block';
+                }, 1000);
+            }, 500);
+        }
+    }, 50);
+
+    function goToThirdPage() {
+        window.location.href = "thirdPage.html";
+    }
+
+    function moveNoButton() {
+        let left = Math.random() * 80 + 'vw';
+        let top = Math.random() * 80 + 'vh';
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = left;
+        noBtn.style.top = top;
+        noCatchTime += 1;
+        
+        if (noCatchTime >= 10) {
+            alert("I'm sad 😞");
+            window.location.href = "thirdPage.html";  // Optionally redirect to third page after warning
+        }
+    }
+</script>
+
+</body>
+</html>
